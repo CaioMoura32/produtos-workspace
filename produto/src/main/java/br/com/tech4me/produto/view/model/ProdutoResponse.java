@@ -1,16 +1,11 @@
 package br.com.tech4me.produto.view.model;
 
 public class ProdutoResponse {
-    private Integer codigo;
     private String nome;
     private Double valor;
+    private int quantidadeEstoque;
     
-    public Integer getCodigo() {
-        return codigo;
-    }
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
+ 
     public String getNome() {
         return nome;
     }
@@ -22,6 +17,12 @@ public class ProdutoResponse {
     }
     public void setValor(Double valor) {
         this.valor = valor;
+    }
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
+    }
+    public void setQuantidadeEstoque(int quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
     }
 
     

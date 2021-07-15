@@ -6,16 +6,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("produto")
 public class Produto {
     @Id
-    private Integer codigo;
+    private String id;
     private double valor;
     private String nome;
     private int quantidadeEstoque;
 
-    public Integer getCodigo() {
-        return codigo;
+    
+    
+    public String getId() {
+        return id;
     }
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
+    public void setId(String id) {
+        this.id = id;
     }
     public double getValor() {
         return valor;
@@ -38,7 +40,7 @@ public class Produto {
     
     @Override
     public String toString() {
-        return "Produto [codigo=" + codigo + ", nome=" + nome + ", quantidadeEstoque=" + quantidadeEstoque + ", valor="
+        return "Produto [codigo=" + id + ", nome=" + nome + ", quantidadeEstoque=" + quantidadeEstoque + ", valor="
                 + valor + "]";
     }
     

@@ -1,36 +1,29 @@
 package br.com.tech4me.produto.sherad;
 
 public class ProdutoDto {
-    private String id;
-    private String nome;
-    private String sobrenome;
-    private int idade;
-    
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
-        this.id = id;
-    }
-    public String getNome() {
-        return nome;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    public String getSobrenome() {
-        return sobrenome;
-    }
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-    public int getIdade() {
-        return idade;
-    }
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
+  private String nome;
+  private double valor;
+  private int quantidadeEstoque;
+  
+public String getNome() {
+    return nome;
+}
+public void setNome(String nome) {
+    this.nome = nome;
+}
+public double getValor() {
+    return valor;
+}
+public void setValor(double valor) {
+    this.valor = valor;
+}
+public int getQuantidadeEstoque() {
+    return quantidadeEstoque;
+}
+public void setQuantidadeEstoque(int quantidadeEstoque) {
+    this.quantidadeEstoque = quantidadeEstoque;
+}
+  
 
     
     

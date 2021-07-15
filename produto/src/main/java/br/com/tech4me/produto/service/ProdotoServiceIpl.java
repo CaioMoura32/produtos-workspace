@@ -3,11 +3,10 @@ package br.com.tech4me.produto.service;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
-import org.modelmapper.internal.bytebuddy.dynamic.DynamicType.Builder.FieldDefinition.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.tech4me.produto.integration.VendaFeignClient;
+
 import br.com.tech4me.produto.model.Produto;
 import br.com.tech4me.produto.repository.ProdutoRepository;
 import br.com.tech4me.produto.sherad.ProdutoDto;
@@ -19,8 +18,7 @@ public class ProdotoServiceIpl implements ProdutoService{
     @Autowired
     private ProdutoRepository repositorio;
 
-    @Autowired
-    private VendaFeignClient produtoMs;
+   
 
     @Override
     public List<ProdutoDto> obterTodos() {
@@ -32,20 +30,20 @@ public class ProdotoServiceIpl implements ProdutoService{
     }
 
     @Override
-    public ProdutoDto cadastrarProduto(ProdutoDto pessoa) {
+    public ProdutoDto cadastrarProduto(ProdutoDto produto) {
         ModelMapper mapa = new ModelMapper();
-        Produto pro = mapa.map(pessoa, Produto.class);
+        Produto pro = mapa.map(produto, Produto.class);
         pro = repositorio.save(pro);
         return mapa.map(pro, ProdutoDto.class);
     }
 
     @Override
-    public void removerProduto(Integer codigo) {
-        repositorio.deleteById(codigo);
+    public void removerProduto(String id) {
+        repositorio.deleteById(id);
         
     }
 
-    @Override
+    /*@Override
     public Optional<ProdutoDto> obterPorCodigo(Integer codigo) {
         Optional<Produto> prod = repositorio.findById(codigo);
 
@@ -56,13 +54,13 @@ public class ProdotoServiceIpl implements ProdutoService{
           return Optional.of(prodDto);
         }
         return Optional.empty();
-    }
+    }*/
 
     @Override
-    public ProdutoDto atualizarProduto(Integer codigo, ProdutoDto produto) {
+    public ProdutoDto atualizarProduto(String id, ProdutoDto produto) {
         ModelMapper mapa = new ModelMapper();
         Produto prod = mapa.map(produto, Produto.class);
-        prod.setCodigo(codigo);
+        prod.setId(id);
         prod = repositorio.save(prod);
 
         return mapa.map(prod, ProdutoDto.class);

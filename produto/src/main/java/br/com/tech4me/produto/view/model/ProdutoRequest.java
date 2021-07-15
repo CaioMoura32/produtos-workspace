@@ -1,14 +1,13 @@
 package br.com.tech4me.produto.view.model;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+
 
 public class ProdutoRequest {
-    @NotBlank(message="O nome deve estar preenchido com caracteres válidos")
-    @NotEmpty(message = "Nome não pode estar vazio")
     private String nome;
     private Double valor;
-
+    private int quantidadeEstoque;
+    
+ 
     public String getNome() {
         return nome;
     }
@@ -21,6 +20,13 @@ public class ProdutoRequest {
     public void setValor(Double valor) {
         this.valor = valor;
     }
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
+    }
+    public void setQuantidadeEstoque(int quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
+    
 
     
 }

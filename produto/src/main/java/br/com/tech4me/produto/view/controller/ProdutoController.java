@@ -1,7 +1,7 @@
 package br.com.tech4me.produto.view.controller;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import javax.validation.Valid;
 
@@ -24,7 +24,7 @@ import br.com.tech4me.produto.service.ProdutoService;
 import br.com.tech4me.produto.sherad.ProdutoDto;
 import br.com.tech4me.produto.view.model.ProdutoRequest;
 import br.com.tech4me.produto.view.model.ProdutoResponse;
-import br.com.tech4me.produto.view.model.ProdutoResponseDetalhes;
+
 
 
 @RestController
@@ -44,7 +44,7 @@ public class ProdutoController {
         return new ResponseEntity<>(prodResponse, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{id}")
+    /*@GetMapping(value = "/{id}")
     public ResponseEntity<ProdutoResponseDetalhes> obterUmaPessoa(@PathVariable Integer codigo){
         Optional<ProdutoDto> prod = servico.obterPorCodigo(codigo);
 
@@ -52,7 +52,7 @@ public class ProdutoController {
             return new ResponseEntity<>(new ModelMapper().map(prod.get(), ProdutoResponseDetalhes.class), HttpStatus.FOUND);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+    }*/
 
     @GetMapping(value = "/status")
     public String status(@Value("${local.server.port}") String porta){
@@ -60,7 +60,7 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ResponseEntity<ProdutoResponse> criarUmaPessoa(@RequestBody @Valid ProdutoRequest produto) {
+    public ResponseEntity<ProdutoResponse> criarUmaProduto(@RequestBody @Valid ProdutoRequest produto) {
         ModelMapper mapa = new ModelMapper();
         ProdutoDto prodDto = mapa.map(produto, ProdutoDto.class);
         prodDto = servico.cadastrarProduto(prodDto);
@@ -68,16 +68,16 @@ public class ProdutoController {
     }
 
     @DeleteMapping(value="/{id}")
-    public ResponseEntity<Void> remover(@PathVariable Integer codigo){
-        servico.removerProduto(codigo);
+    public ResponseEntity<Void> remover(@PathVariable String id){
+        servico.removerProduto(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ProdutoResponse> atualizarPessoa(@PathVariable Integer codigo, @RequestBody @Valid ProdutoRequest produto) {
+    public ResponseEntity<ProdutoResponse> atualizarPessoa(@PathVariable String id, @RequestBody @Valid ProdutoRequest produto) {
         ModelMapper mapa = new ModelMapper();
         ProdutoDto prodDto = mapa.map(produto, ProdutoDto.class);
-        prodDto = servico.atualizarProduto(codigo, prodDto);
+        prodDto = servico.atualizarProduto(id, prodDto);
         return new ResponseEntity<>(mapa.map(prodDto, ProdutoResponse.class), HttpStatus.OK);
     }
 }
